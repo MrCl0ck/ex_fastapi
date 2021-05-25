@@ -33,3 +33,11 @@ def get_id(id_usuario: int):
             return usuario
         
     return "Usuário não encontrado!"
+
+#Rota Inserir
+@app.post("/usuarios")
+def insert_user(usuario: Usuario):
+    return base_de_dados.append(usuario)
+
+#Desafio: criar rotas para alterar, deletar...
+#Desafio2: criar validação de dados, tanto para id quanto para 'email'. É importante que no bd não tenha dados repetidos.
