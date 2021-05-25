@@ -26,3 +26,10 @@ def get_all():
     return base_de_dados
 
 #Rota Get Id
+@app.get("/usuarios/{id_usuario}")
+def get_id(id_usuario: int):
+    for usuario in base_de_dados:
+        if(usuario.id == id_usuario):
+            return usuario
+        
+    return "Usuário não encontrado!"
