@@ -59,7 +59,7 @@ def insert_user(email: str, senha: str):
     return val
 
 #Rota Alterar
-@app.put("/usuarios/{id_usuario}")
+@app.put("/usuarios/{dados}")
 def alter_user(email_antigo: str, email_novo: str, senha_nova: str):
     alterar = get_user(email_antigo)#atribui à variável o retorno da função get_user, que pode ser um usuário OU  'Email já existente!'
 
