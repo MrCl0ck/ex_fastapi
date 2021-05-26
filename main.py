@@ -39,7 +39,7 @@ def get_all():
 def tamanho(): #retorna o tamanho do banco de dados
     return len(base_de_dados)
 
-#Rota Get Id
+#Rota Get User
 @app.get("/usuarios/{email}")
 def get_user(email: str):
     for usuario in base_de_dados:
@@ -53,7 +53,7 @@ def get_user(email: str):
 def insert_user(email: str, senha: str):
     val = validar(email)#atribui à variável o retorno da função validar, que pode ser um "usuário disponível" OU  'usuário não disponível'
     if(val == "Usuário disponível!"): #Se o usuário estiver disponível ele insere no banco e retorna mensagem de sucesso
-        base_de_dados.append(Usuario(id=tamanho()+1, email=email.lower(), senha=senha))
+        base_de_dados.append(Usuario(id=tamanho()+1, email=email.lower(), senha=senha)) #insere sempre um novo usuário na última posição + 1
         return "Usuário inserido com sucesso!"
 
     return val
@@ -86,6 +86,12 @@ def delete_user(email: str): #deleta o usuário por email.
         return remover;
 
     base_de_dados.remove(remover) #remove o usuário do banco de dados
+
+    index = 1
+    for user in base_de_dados: #atualiza os ids dos usuários do banco de dados
+        user.id = index
+        index += 1
+
     return "Usuário deletado com sucesso!"
 
 #Desafio: criar rotas para alterar, deletar... ok
